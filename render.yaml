@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: teachlearn-backend
+    env: python
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: CORS_ORIGINS
+        value: "https://your-vercel-app-url.vercel.app,http://localhost:5173"
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CREDENTIALS_JSON
+        sync: false
+      - key: ADMIN_EMAILS
+        sync: false

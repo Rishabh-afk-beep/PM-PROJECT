@@ -8,6 +8,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # Firebase
     firebase_credentials_path: str = "e:/PM/google-credentials.json"
+    firebase_credentials_json: str = ""  # Base64 or raw JSON string for Render
     firebase_project_id: str = ""
 
     # Admin allowlist (comma-separated emails)

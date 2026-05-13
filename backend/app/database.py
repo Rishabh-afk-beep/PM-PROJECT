@@ -27,10 +27,28 @@ async def connect_db() -> None:
     global client
     if client is not None:
         return
-    creds = service_account.Credentials.from_service_account_file(
-        settings.firebase_credentials_path,
-    )
-    project_id = settings.firebase_project_id or _load_project_id(settings.firebase_credentials_path)
+
+    # Check for credentials passed via env var first (e.g. on Render)
+    if settings.firebase_credentials_json:
+        try:
+            # Handle base64 or raw json
+            import base64
+            try:
+                creds_dict = json.loads(base64.b64decode(settings.firebase_credentials_json).decode("utf-8"))
+            except Exception:
+                creds_dict = json.loads(settings.firebase_credentials_json)
+                
+            creds = service_account.Credentials.from_service_account_info(creds_dict)
+            project_id = settings.firebase_project_id or creds_dict.get("project_id")
+        except Exception as e:
+            raise RuntimeError(f"Failed to parse FIREBASE_CREDENTIALS_JSON: {e}")
+    else:
+        # Fallback to local file
+        creds = service_account.Credentials.from_service_account_file(
+            settings.firebase_credentials_path,
+        )
+        project_id = settings.firebase_project_id or _load_project_id(settings.firebase_credentials_path)
+
     client = AsyncClient(credentials=creds, project=project_id)
 
 

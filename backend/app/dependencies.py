@@ -30,8 +30,18 @@ def _init_firebase() -> None:
     try:
         import firebase_admin
         from firebase_admin import credentials
+        import json
+        import base64
 
-        cred = credentials.Certificate(settings.firebase_credentials_path)
+        if settings.firebase_credentials_json:
+            try:
+                creds_dict = json.loads(base64.b64decode(settings.firebase_credentials_json).decode("utf-8"))
+            except Exception:
+                creds_dict = json.loads(settings.firebase_credentials_json)
+            cred = credentials.Certificate(creds_dict)
+        else:
+            cred = credentials.Certificate(settings.firebase_credentials_path)
+            
         firebase_admin.initialize_app(cred)
         _firebase_app_initialized = True
         logger.info("Firebase Admin SDK initialized")
