@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <!-- Background -->
+  <rect width="192" height="192" rx="38" fill="#6d5dfc"/>
+
+  <!-- Open book left page -->
+  <path d="M96 136 C96 136 60 128 44 118 L44 72 C60 82 96 88 96 88 Z" fill="white" opacity="0.95"/>
+  <!-- Open book right page -->
+  <path d="M96 136 C96 136 132 128 148 118 L148 72 C132 82 96 88 96 88 Z" fill="white" opacity="0.85"/>
+  <!-- Book spine -->
+  <rect x="94" y="88" width="4" height="48" rx="2" fill="white" opacity="0.6"/>
+  <!-- Book base curve -->
+  <path d="M44 118 Q96 132 148 118" stroke="white" stroke-width="3" fill="none" opacity="0.5"/>
+
+  <!-- Sparkle top-right -->
+  <g transform="translate(132, 52)" opacity="0.95">
+    <line x1="0" y1="-10" x2="0" y2="10" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-10" y1="0" x2="10" y2="0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-7" y1="-7" x2="7" y2="7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="7" y1="-7" x2="-7" y2="7" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <!-- Small dot sparkle -->
+  <circle cx="52" cy="56" r="3.5" fill="white" opacity="0.7"/>
+  <circle cx="64" cy="46" r="2" fill="white" opacity="0.5"/>
+</svg>
